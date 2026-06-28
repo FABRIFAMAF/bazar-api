@@ -21,6 +21,7 @@ public class ProductoService implements IProductoService{
 
     @Override
     public void newProducto(Producto produc) {
+
         productoRepo.save(produc);
     }
 
