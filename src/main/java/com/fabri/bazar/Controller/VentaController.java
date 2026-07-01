@@ -45,4 +45,11 @@ public class VentaController {
 
         return venta;
     }
+
+    @PutMapping ("/venta/editar")
+    public Venta editVenta(@RequestBody Venta venta) {
+        ventaServ.editVenta(venta);
+
+        return ventaServ.findVenta(venta.getCodigo_venta());
+    }
 }

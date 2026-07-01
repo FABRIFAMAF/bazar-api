@@ -19,5 +19,7 @@ public interface IVentaService {
 
     public Venta editVenta(Long codigo_venta, LocalDate nuevaFechaVenta, Double nuevoTotal, List<Producto> nuevaListaProductos, Cliente nuevoCliente);
 
+    public void editVenta(Venta venta);
+
 
 }
