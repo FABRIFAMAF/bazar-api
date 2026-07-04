@@ -18,6 +18,12 @@ public class ClienteController {
         return clienteServ.getCliente();
     }
 
+    @GetMapping("/clientes/{id_cliente}")
+    public Cliente findCliente(Long id_cliente){
+        Cliente cliente = this.clienteServ.findCliente(id_cliente);
+        return cliente;
+    }
+
     @PostMapping("/cliente/crear")
     public String saveCliente(Cliente cliente){
         clienteServ.saveCliente(cliente);

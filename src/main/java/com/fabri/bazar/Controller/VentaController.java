@@ -21,6 +21,18 @@ public class VentaController {
         return ventaServ.getVentas();
     }
 
+    @GetMapping("/venta/{codigo_venta}")
+    public Venta findVenta(Long codigo_venta){
+        Venta venta = this.ventaServ.findVenta(codigo_venta);
+        return venta;
+    }
+
+    @GetMapping("/ventas/productos/{codigo_venta}")
+    public List<Producto> getProductosByVenta(@PathVariable Long codigo_venta){
+        List<Producto> productosByVenta= ventaServ.getProductosByVenta(codigo_venta);
+        return productosByVenta;
+    }
+
     @PostMapping("/venta/crear")
     public String saveVenta(Venta venta) {
         ventaServ.saveVenta(venta);

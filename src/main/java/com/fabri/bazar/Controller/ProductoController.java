@@ -18,6 +18,18 @@ public class ProductoController {
         return producServ.getProductos();
     }
 
+    @GetMapping("/productos/{id}")
+    public Producto findProducto(Long id){
+        Producto produc = this.producServ.findProducto(id);
+        return produc;
+    }
+
+    @GetMapping("/productos/falta_stock")
+    public List<Producto> findProductosPocoStock(){
+        List<Producto> pocoStock = producServ.obtenerProductosConStockMenorA(5.0);
+        return pocoStock;
+    }
+
     @PostMapping("/producto/crear")
     public String newProducto(Producto produc){
         producServ.newProducto(produc);

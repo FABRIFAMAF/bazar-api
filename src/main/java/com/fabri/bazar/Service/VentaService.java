@@ -23,6 +23,14 @@ public class VentaService implements IVentaService{
     }
 
     @Override
+    public List<Producto> getProductosByVenta(Long codigo_venta) {
+        Venta venta = ventaRepo.findById(codigo_venta)
+                .orElseThrow(() -> new RuntimeException("Venta no encontrada"));
+
+        return venta.getListaProductos();
+    }
+
+    @Override
     public void saveVenta(Venta venta) {
         ventaRepo.save(venta);
     }

@@ -1,6 +1,7 @@
 package com.fabri.bazar.Service;
 
 import com.fabri.bazar.Model.Producto;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface IProductoService {
     public Producto findProducto(Long id);
 
     public void editProducto(Long id, String nuevoNombre, String nuevaMarca, Double nuevoPrecio, Double nuevaCantidadDisponible);
+
+    public List<Producto> obtenerProductosConStockMenorA(@Param("limite") Double limite);
 }

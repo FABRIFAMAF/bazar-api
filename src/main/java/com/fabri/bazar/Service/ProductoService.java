@@ -3,6 +3,7 @@ package com.fabri.bazar.Service;
 import com.fabri.bazar.Model.Producto;
 import com.fabri.bazar.Repository.IProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -47,6 +48,11 @@ public class ProductoService implements IProductoService{
         produc.setCantidad_disponible(nuevaCantidadDisponible);
 
         this.newProducto(produc);
+    }
+
+    @Override
+    public List<Producto> obtenerProductosConStockMenorA(@Param("limite") Double limite) {
+        return productoRepo.obtenerProductosConStockMenorA(5.0);
     }
 
 

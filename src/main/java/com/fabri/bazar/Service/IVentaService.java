@@ -11,6 +11,8 @@ public interface IVentaService {
 
     public List<Venta> getVentas();
 
+    public List<Producto> getProductosByVenta(Long codigo_venta);
+
     public void saveVenta(Venta venta);
 
     public Venta findVenta(Long codigo_venta);
@@ -20,6 +22,7 @@ public interface IVentaService {
     public Venta editVenta(Long codigo_venta, LocalDate nuevaFechaVenta, Double nuevoTotal, List<Producto> nuevaListaProductos, Cliente nuevoCliente);
 
     public void editVenta(Venta venta);
+
 
 
 }
