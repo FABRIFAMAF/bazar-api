@@ -1,5 +1,6 @@
 package com.fabri.bazar.Service;
 
+import com.fabri.bazar.DTO.MayorVentaDTO;
 import com.fabri.bazar.Model.Cliente;
 import com.fabri.bazar.Model.Producto;
 import com.fabri.bazar.Model.Venta;
@@ -12,6 +13,10 @@ public interface IVentaService {
     public List<Venta> getVentas();
 
     public List<Producto> getProductosByVenta(Long codigo_venta);
+
+    public String getResumenVentasPorFecha(LocalDate fecha);
+
+    public MayorVentaDTO getMayorVenta();
 
     public void saveVenta(Venta venta);
 

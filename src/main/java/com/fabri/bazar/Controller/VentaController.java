@@ -1,5 +1,6 @@
 package com.fabri.bazar.Controller;
 
+import com.fabri.bazar.DTO.MayorVentaDTO;
 import com.fabri.bazar.Model.Cliente;
 import com.fabri.bazar.Model.Producto;
 import com.fabri.bazar.Model.Venta;
@@ -31,6 +32,12 @@ public class VentaController {
     public List<Producto> getProductosByVenta(@PathVariable Long codigo_venta){
         List<Producto> productosByVenta= ventaServ.getProductosByVenta(codigo_venta);
         return productosByVenta;
+    }
+
+    @GetMapping("/ventas/mayor_venta")
+    public MayorVentaDTO getMayorVenta() {
+
+        return ventaServ.getMayorVenta();
     }
 
     @PostMapping("/venta/crear")
