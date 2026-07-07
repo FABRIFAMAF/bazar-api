@@ -1,8 +1,8 @@
 package com.fabri.bazar.Controller;
 
+import com.fabri.bazar.Model.DetalleVenta;
 import com.fabri.bazar.DTO.MayorVentaDTO;
 import com.fabri.bazar.Model.Cliente;
-import com.fabri.bazar.Model.Producto;
 import com.fabri.bazar.Model.Venta;
 import com.fabri.bazar.Service.IVentaService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ public class VentaController {
     }
 
     @GetMapping("/venta/{codigo_venta}")
-    public Venta findVenta(Long codigo_venta){
+    public Venta findVenta(@PathVariable Long codigo_venta){
         Venta venta = this.ventaServ.findVenta(codigo_venta);
         return venta;
     }
 
     @GetMapping("/ventas/productos/{codigo_venta}")
-    public List<Producto> getProductosByVenta(@PathVariable Long codigo_venta){
-        List<Producto> productosByVenta= ventaServ.getProductosByVenta(codigo_venta);
+    public List<DetalleVenta> getProductosByVenta(@PathVariable Long codigo_venta){
+        List<DetalleVenta> productosByVenta= ventaServ.getProductosByVenta(codigo_venta);
         return productosByVenta;
     }
 
@@ -41,22 +41,30 @@ public class VentaController {
     }
 
     @PostMapping("/venta/crear")
-    public String saveVenta(Venta venta) {
-        ventaServ.saveVenta(venta);
-        return "La nueva venta fue creada correctamente";
+    public String saveVenta(@RequestBody Venta venta) {
+        try {
+            ventaServ.saveVenta(venta);
+            return "La nueva venta fue creada correctamente";
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
     }
 
     @DeleteMapping("/venta/borrar/{codigo_venta}")
     public String deleteVenta(@PathVariable Long codigo_venta) {
-        ventaServ.deleteVenta(codigo_venta);
-        return "La venta fue eliminada correctamente";
+        try {
+            ventaServ.deleteVenta(codigo_venta);
+            return "La venta fue eliminada correctamente";
+        } catch (RuntimeException e) {
+            return e.getMessage();
+        }
     }
 
     @PutMapping("/venta/editar/{codigo_venta}")
     public Venta editVenta(@PathVariable Long codigo_venta,
                            @RequestParam(required = false, name = "fecha_venta") LocalDate nuevaFecha,
                            @RequestParam(required = false, name = "total") Double nuevoTotal,
-                           @RequestParam(required = false, name = "listaProductos") List<Producto> nuevaLista,
+                           @RequestParam(required = false, name = "listaProductos") List<DetalleVenta> nuevaLista,
                            @RequestParam(required = false, name = "unCliente") Cliente nuevoCliente) {
         ventaServ.editVenta(codigo_venta, nuevaFecha, nuevoTotal, nuevaLista, nuevoCliente);
 

@@ -19,24 +19,24 @@ public class ClienteController {
     }
 
     @GetMapping("/clientes/{id_cliente}")
-    public Cliente findCliente(Long id_cliente){
+    public Cliente findCliente(@PathVariable Long id_cliente){
         Cliente cliente = this.clienteServ.findCliente(id_cliente);
         return cliente;
     }
 
     @PostMapping("/cliente/crear")
-    public String saveCliente(Cliente cliente){
+    public String saveCliente(@RequestBody Cliente cliente){
         clienteServ.saveCliente(cliente);
         return "El nuevo cliente fue creado correctamente";
     }
 
-    @DeleteMapping("/cliente/borrar/{id}")
+    @DeleteMapping("/cliente/borrar/{id_cliente}")
     public String deleteCliente(@PathVariable Long id_cliente){
         clienteServ.deleteCliente(id_cliente);
         return "El cliente fue eliminado correctamente";
     }
 
-    @PutMapping("/cliente/editar/{id}")
+    @PutMapping("/cliente/editar/{id_cliente}")
     public Cliente editCliente(@PathVariable Long id_cliente,
                                  @RequestParam(required=false, name="nombre") String nuevoNombre,
                                  @RequestParam (required=false, name="apellido") String nuevoApellido,

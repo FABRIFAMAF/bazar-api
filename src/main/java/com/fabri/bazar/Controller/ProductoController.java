@@ -19,7 +19,7 @@ public class ProductoController {
     }
 
     @GetMapping("/productos/{id}")
-    public Producto findProducto(Long id){
+    public Producto findProducto(@PathVariable Long id){
         Producto produc = this.producServ.findProducto(id);
         return produc;
     }
@@ -31,7 +31,7 @@ public class ProductoController {
     }
 
     @PostMapping("/producto/crear")
-    public String newProducto(Producto produc){
+    public String newProducto(@RequestBody Producto produc){
         producServ.newProducto(produc);
         return "El nuevo producto fue creado correctamente";
     }

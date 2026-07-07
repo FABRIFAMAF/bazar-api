@@ -52,7 +52,7 @@ public class ProductoService implements IProductoService{
 
     @Override
     public List<Producto> obtenerProductosConStockMenorA(@Param("limite") Double limite) {
-        return productoRepo.obtenerProductosConStockMenorA(5.0);
+        return productoRepo.obtenerProductosConStockMenorA(limite);
     }
 
 
